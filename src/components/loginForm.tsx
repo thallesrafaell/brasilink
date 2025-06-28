@@ -1,10 +1,11 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { GoogleLogoIcon } from "@phosphor-icons/react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -14,7 +15,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { createClient } from "@/lib/supabase/client"; // Adjust the import path as necessary
 
+import { Button } from "./ui/button";
 import { CardContent } from "./ui/card";
 
 const formSchema = z.object({
@@ -39,9 +42,39 @@ export function LoginForm() {
       password: "",
     },
   });
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log("Form submitted:", data);
-    // Here you can handle the form submission, e.g., send data to an API
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    const supabase = await createClient();
+    try {
+      await supabase.auth.signInWithPassword({
+        email: data.email,
+        password: data.password,
+      });
+      toast.success("Login realizado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao fazer login:", error);
+      toast.error(
+        "Login falhou. Verifique suas credenciais e tente novamente."
+      );
+    }
+  };
+
+  const handleLoginWithGoogle = async () => {
+    try {
+      const supabase = await createClient();
+
+      await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: `http://localhost:3000/auth/callback`,
+          queryParams: {
+            access_type: "offline",
+            prompt: "consent",
+          },
+        },
+      });
+    } catch (error) {
+      toast.error(`Login com Google falhou. ${error}`);
+    }
   };
   return (
     <>
@@ -85,6 +118,14 @@ export function LoginForm() {
             <Button className="w-full font-bold text-white">Entrar</Button>
           </form>
         </Form>
+        <Button
+          onClick={handleLoginWithGoogle}
+          className="w-full font-bold text-white"
+          variant={"outline"}
+        >
+          <GoogleLogoIcon size={32} weight="bold" color="#bb2a2a" />
+          Login com Google
+        </Button>
       </CardContent>
     </>
   );

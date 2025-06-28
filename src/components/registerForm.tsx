@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -14,6 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { createClient } from "@/lib/supabase/client";
 
 import { CardContent } from "./ui/card";
 
@@ -51,9 +53,21 @@ export function RegisterForm() {
       confirmPassword: "",
     },
   });
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log("Form submitted:", data);
-    // Here you can handle the form submission, e.g., send data to an API
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    try {
+      const supabase = await createClient();
+      await supabase.auth.signUp({
+        email: data.email,
+        password: data.password,
+      });
+
+      toast.success("Conta criada com sucesso!");
+    } catch (error) {
+      console.error("Erro ao criar conta:", error);
+      toast.error(
+        "Erro ao criar conta. Verifique suas informações e tente novamente."
+      );
+    }
   };
   return (
     <>
