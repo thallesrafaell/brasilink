@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -44,6 +45,7 @@ const formSchema = z
   });
 
 export function RegisterForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -56,16 +58,25 @@ export function RegisterForm() {
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
       const supabase = await createClient();
-      await supabase.auth.signUp({
+      const { data: signupData, error } = await supabase.auth.signUp({
         email: data.email,
         password: data.password,
       });
+      if (error) {
+        throw error;
+      }
+      if (!signupData.user) {
+        throw new Error("Usuário não foi criado. Tente novamente.");
+      }
 
       toast.success("Conta criada com sucesso!");
+      router.push("/email-verification");
     } catch (error) {
       console.error("Erro ao criar conta:", error);
       toast.error(
-        "Erro ao criar conta. Verifique suas informações e tente novamente."
+        `Erro ao criar conta: ${
+          error instanceof Error ? error.message : "Erro desconhecido"
+        }`
       );
     }
   };

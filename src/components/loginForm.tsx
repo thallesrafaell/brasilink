@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { GoogleLogoIcon } from "@phosphor-icons/react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -35,6 +36,7 @@ const formSchema = z.object({
 });
 
 export function LoginForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -45,15 +47,25 @@ export function LoginForm() {
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     const supabase = await createClient();
     try {
-      await supabase.auth.signInWithPassword({
-        email: data.email,
-        password: data.password,
-      });
-      toast.success("Login realizado com sucesso!");
+      const { data: dataResponse, error } =
+        await supabase.auth.signInWithPassword({
+          email: data.email,
+          password: data.password,
+        });
+      if (error) {
+        throw error;
+      }
+
+      const user = dataResponse.user;
+
+      toast.success(`Login realizado com sucesso! Bem-vindo, ${user?.email}`);
+      router.push("/dashboard");
     } catch (error) {
       console.error("Erro ao fazer login:", error);
       toast.error(
-        "Login falhou. Verifique suas credenciais e tente novamente."
+        `Erro ao fazer login: ${
+          error instanceof Error ? error.message : "Erro desconhecido"
+        }`
       );
     }
   };
@@ -62,7 +74,7 @@ export function LoginForm() {
     try {
       const supabase = await createClient();
 
-      await supabase.auth.signInWithOAuth({
+      const { data, error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
           redirectTo: `http://localhost:3000/auth/callback`,
@@ -72,6 +84,12 @@ export function LoginForm() {
           },
         },
       });
+      if (error) {
+        throw error;
+      }
+      if (data.url) {
+        toast.success("Login com Google realizado com sucesso!");
+      }
     } catch (error) {
       toast.error(`Login com Google falhou. ${error}`);
     }
