@@ -52,12 +52,12 @@ export function LoginForm() {
           email: data.email,
           password: data.password,
         });
+
       if (error) {
         throw error;
       }
 
       const user = dataResponse.user;
-
       toast.success(`Login realizado com sucesso! Bem-vindo, ${user?.email}`);
       router.push("/dashboard");
     } catch (error) {
@@ -77,13 +77,10 @@ export function LoginForm() {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: `http://localhost:3000/auth/callback`,
-          queryParams: {
-            access_type: "offline",
-            prompt: "consent",
-          },
+          redirectTo: "http://localhost:3000/auth/callback?next=/dashboard",
         },
       });
+
       if (error) {
         throw error;
       }

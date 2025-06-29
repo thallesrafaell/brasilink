@@ -1,3 +1,5 @@
+import { redirect } from "next/navigation";
+
 import { LoginForm } from "@/components/loginForm";
 import { RegisterForm } from "@/components/registerForm";
 import {
@@ -7,8 +9,16 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { createClient } from "@/lib/supabase/server";
 
-export function AuthPage() {
+export async function AuthPage() {
+  const supabase = await createClient();
+
+  const { data } = await supabase.auth.getSession();
+  if (data.session?.access_token) {
+    redirect("/dashboard");
+  }
+
   return (
     <div className="flex h-screen w-full items-center justify-center">
       <div className="flex w-full max-w-sm flex-col gap-6">
