@@ -13,6 +13,8 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
+import LogoutButton from "./logoutButton";
+
 // Menu items.
 const items = [
   {
@@ -80,6 +82,9 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+        <div className="mt-auto w-full">
+          <LogoutButton />
+        </div>
       </SidebarContent>
     </Sidebar>
   );

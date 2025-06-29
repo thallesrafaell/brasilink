@@ -19,11 +19,12 @@ const LogoutButton = () => {
 
   return (
     <Button
-      size={"icon"}
       onClick={handleLogout}
-      className="text-red-500"
+      className="align-start flex w-full items-center justify-start gap-2 rounded-[0px] text-red-500 hover:text-red-600"
       variant={"ghost"}
     >
+      {" "}
+      Exit
       <SignOutIcon />
     </Button>
   );
