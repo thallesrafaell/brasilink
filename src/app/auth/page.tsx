@@ -12,7 +12,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { createClient } from "@/lib/supabase/server";
 
-export async function AuthPage() {
+export default async function Page() {
   const supabase = await createClient();
 
   const { data } = await supabase.auth.getSession();
@@ -61,5 +61,3 @@ export async function AuthPage() {
     </div>
   );
 }
-
-export default AuthPage;
