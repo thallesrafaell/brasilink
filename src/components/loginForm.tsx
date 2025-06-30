@@ -25,13 +25,13 @@ const formSchema = z.object({
   email: z
     .string()
     .email({
-      message: "Por favor, insira um email válido.",
+      message: "Please enter a valid email.",
     })
     .refine((value) => value.length <= 255, {
-      message: "Email não pode ter mais de 255 caracteres.",
+      message: "Email cannot have more than 255 characters.",
     }),
   password: z.string().min(6, {
-    message: "Senha deve ter pelo menos 6 caracteres.",
+    message: "Password must be at least 6 characters.",
   }),
 });
 
@@ -58,13 +58,13 @@ export function LoginForm() {
       }
 
       const user = dataResponse.user;
-      toast.success(`Login realizado com sucesso! Bem-vindo, ${user?.email}`);
+      toast.success(`Login successful! Welcome, ${user?.email}`);
       router.push("/dashboard");
     } catch (error) {
-      console.error("Erro ao fazer login:", error);
+      console.error("Error logging in:", error);
       toast.error(
-        `Erro ao fazer login: ${
-          error instanceof Error ? error.message : "Erro desconhecido"
+        `Login error: ${
+          error instanceof Error ? error.message : "Unknown error"
         }`
       );
     }
@@ -85,10 +85,10 @@ export function LoginForm() {
         throw error;
       }
       if (data.url) {
-        toast.success("Login com Google realizado com sucesso!");
+        toast.success("Google login successful!");
       }
     } catch (error) {
-      toast.error(`Login com Google falhou. ${error}`);
+      toast.error(`Google login failed. ${error}`);
     }
   };
   return (
@@ -104,7 +104,7 @@ export function LoginForm() {
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Digite seu email"
+                      placeholder="Enter your email"
                       {...field}
                       type="email"
                     />
@@ -118,11 +118,11 @@ export function LoginForm() {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Senha</FormLabel>
+                  <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input
                       type="password"
-                      placeholder="Digite sua senha"
+                      placeholder="Enter your password"
                       {...field}
                     />
                   </FormControl>
@@ -130,16 +130,16 @@ export function LoginForm() {
                 </FormItem>
               )}
             />
-            <Button className="w-full font-bold text-white">Entrar</Button>
+            <Button className="w-full font-bold text-white">Login</Button>
           </form>
         </Form>
         <Button
           onClick={handleLoginWithGoogle}
-          className="w-full font-bold text-white"
+          className="w-full font-bold"
           variant={"outline"}
         >
           <GoogleLogoIcon size={32} weight="bold" color="#bb2a2a" />
-          Login com Google
+          Login with Google
         </Button>
       </CardContent>
     </>

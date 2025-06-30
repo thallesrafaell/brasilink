@@ -13,7 +13,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-import { ModeToggle } from "./toogleTheme";
+import { ModeToggle } from "./toggleTheme";
 import { UserDropdownMenu } from "./userDropDown";
 
 // Menu items.

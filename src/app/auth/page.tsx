@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 
 import { LoginForm } from "@/components/loginForm";
 import { RegisterForm } from "@/components/registerForm";
+import { ModeToggle } from "@/components/toggleTheme";
 import {
   Card,
   CardDescription,
@@ -20,7 +21,7 @@ export async function AuthPage() {
   }
 
   return (
-    <div className="flex h-screen w-full items-center justify-center">
+    <div className="relative flex h-screen w-full items-center justify-center">
       <div className="flex w-full max-w-sm flex-col gap-6">
         <h1 className="text-primary text-center text-4xl font-bold">
           Brasilink<span className="text-muted-foreground text-sm">&copy;</span>
@@ -53,6 +54,9 @@ export async function AuthPage() {
             </Card>
           </TabsContent>
         </Tabs>
+      </div>
+      <div className="absolute right-4 bottom-4">
+        <ModeToggle />
       </div>
     </div>
   );

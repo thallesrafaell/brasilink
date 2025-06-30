@@ -23,25 +23,25 @@ import { CardContent } from "./ui/card";
 const formSchema = z
   .object({
     name: z.string().min(1, {
-      message: "Nome é obrigatório.",
+      message: "Name is required.",
     }),
     email: z
       .string()
       .email({
-        message: "Por favor, insira um email válido.",
+        message: "Please enter a valid email.",
       })
       .refine((value) => value.length <= 255, {
-        message: "Email não pode ter mais de 255 caracteres.",
+        message: "Email cannot have more than 255 characters.",
       }),
     password: z.string().min(6, {
-      message: "Senha deve ter pelo menos 6 caracteres.",
+      message: "Password must be at least 6 characters.",
     }),
     confirmPassword: z.string().min(6, {
-      message: "Confirmação de senha deve ter pelo menos 6 caracteres.",
+      message: "Confirmation password must be at least 6 characters.",
     }),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "As senhas não coincidem.",
+    message: "Passwords do not match.",
   });
 
 export function RegisterForm() {
@@ -66,16 +66,16 @@ export function RegisterForm() {
         throw error;
       }
       if (!signupData.user) {
-        throw new Error("Usuário não foi criado. Tente novamente.");
+        throw new Error("User was not created. Please try again.");
       }
 
-      toast.success("Conta criada com sucesso!");
+      toast.success("Account created successfully!");
       router.push("/email-verification");
     } catch (error) {
-      console.error("Erro ao criar conta:", error);
+      console.error("Error creating account:", error);
       toast.error(
-        `Erro ao criar conta: ${
-          error instanceof Error ? error.message : "Erro desconhecido"
+        `Error creating account: ${
+          error instanceof Error ? error.message : "Unknown error"
         }`
       );
     }
@@ -90,10 +90,10 @@ export function RegisterForm() {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nome</FormLabel>
+                  <FormLabel>Name</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Digite seu nome"
+                      placeholder="Enter your name"
                       {...field}
                       type="text"
                     />
@@ -110,7 +110,7 @@ export function RegisterForm() {
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Digite seu email"
+                      placeholder="Enter your email"
                       {...field}
                       type="email"
                     />
@@ -124,11 +124,11 @@ export function RegisterForm() {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Senha</FormLabel>
+                  <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input
                       type="password"
-                      placeholder="Digite sua senha"
+                      placeholder="Enter your password"
                       {...field}
                     />
                   </FormControl>
@@ -141,11 +141,11 @@ export function RegisterForm() {
               name="confirmPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Confirmação de Senha</FormLabel>
+                  <FormLabel>Confirm Password</FormLabel>
                   <FormControl>
                     <Input
                       type="password"
-                      placeholder="Confirme sua senha"
+                      placeholder="Confirm your password"
                       {...field}
                     />
                   </FormControl>
@@ -153,7 +153,9 @@ export function RegisterForm() {
                 </FormItem>
               )}
             />
-            <Button className="w-full font-bold text-white">Criar conta</Button>
+            <Button className="w-full font-bold text-white">
+              Create Account
+            </Button>
           </form>
         </Form>
       </CardContent>
