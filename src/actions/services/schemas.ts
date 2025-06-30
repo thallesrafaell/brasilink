@@ -22,3 +22,33 @@ export const deleteServiceSchema = z.object({
 });
 
 export type DeleteServiceSchema = z.infer<typeof deleteServiceSchema>;
+
+export const editServiceSchema = z.object({
+  id: z.string().uuid("Invalid service ID format."),
+  name: z
+    .string()
+    .min(2, {
+      message: "Service name must be at least 2 characters.",
+    })
+    .optional(),
+  description: z
+    .string()
+    .min(10, {
+      message: "Description must be at least 10 characters.",
+    })
+    .optional(),
+  price: z
+    .number()
+    .min(0, {
+      message: "Price must be a valid positive number.",
+    })
+    .optional(),
+  duration: z
+    .number()
+    .min(0, {
+      message: "Duration must be a valid positive number.",
+    })
+    .optional(),
+});
+
+export type EditServiceSchema = z.infer<typeof editServiceSchema>;
