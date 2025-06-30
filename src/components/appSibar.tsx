@@ -1,5 +1,5 @@
 "use client";
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { Calendar, Home, Search, Settings, ToolCaseIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import {
@@ -24,9 +24,9 @@ const items = [
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "/inbox",
-    icon: Inbox,
+    title: "My Services",
+    url: "/services",
+    icon: ToolCaseIcon,
   },
   {
     title: "Calendar",
