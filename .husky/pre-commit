@@ -1,3 +1,13 @@
-# .husky/pre-commit
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
 
+# Executa o script para incrementar a versão
+
+echo "🔄 Atualizando versão do projeto..."
+node .husky/scripts/version-bump.mjs || exit 1
+git add package.json
+
+# Continue com o lint-staged
+
+echo "🔄 Executa lints de formatação "
 npx lint-staged
