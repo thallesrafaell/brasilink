@@ -211,18 +211,16 @@ const UserSettingsForm = ({ userMetadata }: UserSettingsFormProps) => {
   const isGoogleUser = userMetadata.provider === "google";
 
   return (
-    <Card>
+    <Card className="mx-auto mt-8 w-96 max-w-2xl">
       <CardHeader>
         <CardTitle>Settings</CardTitle>
         <CardDescription>Manage your account settings</CardDescription>
       </CardHeader>
-      <CardContent className="grid gap-6">
+      <CardContent className="grid w-full gap-6">
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit(onSubmit, (error) => {
-              console.error("Form submission error:", error);
-            })}
-            className="mx-auto max-w-md space-y-8"
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="mx-auto w-full space-y-8"
           >
             <div className="flex flex-col items-center gap-4">
               <div className="group relative">

@@ -8,12 +8,12 @@ const PrivateLayout = ({ children }: { children: ReactNode }) => {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main className="flex-1 px-4 py-4">
-        <div className="mb-4 flex items-center">
+      <main className="flex h-screen flex-1 flex-col px-4 py-4">
+        <div className="mb-4 flex flex-shrink-0 items-center">
           <SidebarTrigger />
           <TitleLayout />
         </div>
-        {children}
+        <div className="flex-1 overflow-hidden">{children}</div>
       </main>
     </SidebarProvider>
   );
