@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { User2Icon } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -235,9 +236,11 @@ const UserSettingsForm = ({ userMetadata }: UserSettingsFormProps) => {
                     />
                   ) : null}
                   <AvatarFallback>
-                    {userMetadata.name
-                      ? userMetadata.name.substring(0, 2).toUpperCase()
-                      : "TR"}
+                    {userMetadata.name ? (
+                      userMetadata.name.substring(0, 2).toUpperCase()
+                    ) : (
+                      <User2Icon className="h-6 w-6" />
+                    )}
                   </AvatarFallback>
 
                   {/* Overlay hover effect */}

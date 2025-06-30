@@ -1,6 +1,6 @@
 "use client";
 
-import { LogOutIcon, MoreVerticalIcon } from "lucide-react";
+import { LogOutIcon, MoreVerticalIcon, User2Icon } from "lucide-react";
 import { redirect } from "next/navigation";
 import { useEffect, useState, useCallback } from "react";
 
@@ -106,7 +106,13 @@ export function UserDropdownMenu() {
               }
               alt={userData?.name}
             />
-            <AvatarFallback>TR</AvatarFallback>
+            <AvatarFallback>
+              {userData?.name ? (
+                userData.name.substring(0, 2).toUpperCase()
+              ) : (
+                <User2Icon className="h-6 w-6" />
+              )}
+            </AvatarFallback>
           </Avatar>
           <div>
             <p className="text-sm">{userData?.name}</p>
