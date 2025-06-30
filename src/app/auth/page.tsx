@@ -28,15 +28,14 @@ export async function AuthPage() {
         <Tabs defaultValue="login" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="login">Login</TabsTrigger>
-            <TabsTrigger value="register">Cadastro</TabsTrigger>
+            <TabsTrigger value="register">Register</TabsTrigger>
           </TabsList>
           <TabsContent value="login">
             <Card>
               <CardHeader>
                 <CardTitle>Login</CardTitle>
                 <CardDescription>
-                  Faça login e conheça o novo jeito de se conectar com seus
-                  clientes.
+                  Log in and discover a new way to connect with your clients.
                 </CardDescription>
               </CardHeader>
               <LoginForm />
@@ -45,9 +44,9 @@ export async function AuthPage() {
           <TabsContent value="register">
             <Card>
               <CardHeader>
-                <CardTitle>Cadastro</CardTitle>
+                <CardTitle>Register</CardTitle>
                 <CardDescription>
-                  Crie sua conta Brasilink aqui.
+                  Create your Brasilink account here.
                 </CardDescription>
               </CardHeader>
               <RegisterForm />
