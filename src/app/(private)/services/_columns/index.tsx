@@ -28,6 +28,14 @@ export const serviceColumns: ColumnDef<Services>[] = [
     },
   },
   {
+    accessorKey: "duration",
+    header: "Duration",
+    cell: ({ row }) => {
+      const duration = Number(row.getValue("duration"));
+      return <div>{`${duration} minutes`}</div>;
+    },
+  },
+  {
     accessorKey: "createdAt",
     header: "Created",
     cell: ({ row }) => {

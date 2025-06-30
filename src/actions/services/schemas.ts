@@ -1,0 +1,18 @@
+import z from "zod";
+
+export const addServiceSchema = z.object({
+  name: z.string().min(2, {
+    message: "Service name must be at least 2 characters.",
+  }),
+  description: z.string().min(10, {
+    message: "Description must be at least 10 characters.",
+  }),
+  price: z.string().refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
+    message: "Price must be a valid positive number.",
+  }),
+  duration: z.string().refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
+    message: "Duration must be a valid positive number.",
+  }),
+});
+
+export type AddServiceSchema = z.infer<typeof addServiceSchema>;

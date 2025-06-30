@@ -122,4 +122,37 @@
   button {
     @apply cursor-pointer font-bold;
   }
+
+  /* ScrollArea styles */
+  [data-slot="scroll-area"] {
+    overflow: hidden;
+  }
+
+  [data-slot="scroll-area-viewport"] {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  [data-slot="scroll-area-scrollbar"] {
+    display: flex;
+    user-select: none;
+    touch-action: none;
+    padding: 2px;
+    transition: background-color 0.2s ease;
+  }
+
+  [data-slot="scroll-area-scrollbar"]:hover {
+    background-color: hsl(var(--border));
+  }
+
+  [data-slot="scroll-area-thumb"] {
+    background-color: hsl(var(--border));
+    border-radius: 9999px;
+    position: relative;
+    flex: 1;
+  }
+
+  [data-slot="scroll-area-thumb"]:hover {
+    background-color: hsl(var(--muted-foreground));
+  }
 }
