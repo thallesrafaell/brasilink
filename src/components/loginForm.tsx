@@ -69,16 +69,24 @@ export function LoginForm() {
       );
     }
   };
+  const getBaseUrl = () => {
+    const PROD_URL = process.env.NEXT_PUBLIC_REDIRECT_URL;
+    if (PROD_URL) {
+      console.log("Using production URL:", PROD_URL);
+      return PROD_URL;
+    }
 
+    return "http://localhost:3000/dashboard"; // Adjust this URL as needed
+  };
   const handleLoginWithGoogle = async () => {
     try {
       const supabase = await createClient();
+      const baseUrl = getBaseUrl();
 
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo:
-            "https://brasilink.codeverse42.com.br/auth/callback?next=/dashboard",
+          redirectTo: baseUrl,
         },
       });
 
