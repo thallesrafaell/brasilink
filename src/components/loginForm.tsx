@@ -74,13 +74,14 @@ export function LoginForm() {
     try {
       const supabase = await createClient();
 
+      const baseUrl =
+        process.env.NEXT_PUBLIC_REDIRECT_URL || "http://localhost:3000";
+      const redirectTo = `${baseUrl}/auth/callback?next=/dashboard`;
+
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo:
-            process.env.NEXT_PUBLIC_REDIRECT_URL +
-              "/auth/callback?next=/dashboard" ||
-            "http://localhost:3000/auth/callback?next=/dashboard",
+          redirectTo,
         },
       });
 
