@@ -61,6 +61,11 @@ export function RegisterForm() {
       const { data: signupData, error } = await supabase.auth.signUp({
         email: data.email,
         password: data.password,
+        options: {
+          data: {
+            name: data.name,
+          },
+        },
       });
       if (error) {
         throw error;
