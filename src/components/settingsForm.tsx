@@ -20,26 +20,32 @@ import { Input } from "@/components/ui/input";
 import { createClient } from "@/lib/supabase/client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Card, CardContent } from "./ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 
 const formSchema = z
   .object({
-    name: z.string().min(1, { message: "Nome é obrigatório." }),
+    name: z.string().min(1, { message: "Name is required." }),
     email: z
       .string()
-      .email({ message: "Por favor, insira um email válido." })
-      .max(255, { message: "Email não pode ter mais de 255 caracteres." }),
+      .email({ message: "Please enter a valid email." })
+      .max(255, { message: "Email cannot have more than 255 characters." }),
     password: z
       .string()
       .optional()
       .refine((val) => val === undefined || val === "" || val.length >= 6, {
-        message: "Senha deve ter pelo menos 6 caracteres.",
+        message: "Password must be at least 6 characters.",
       }),
     confirmPassword: z
       .string()
       .optional()
       .refine((val) => val === undefined || val === "" || val.length >= 6, {
-        message: "Confirmação de senha deve ter pelo menos 6 caracteres.",
+        message: "Confirmation password must be at least 6 characters.",
       }),
     my_profile_image_url: z.string().optional(),
   })
@@ -48,7 +54,7 @@ const formSchema = z
       if (!data.password && !data.confirmPassword) return true;
       return data.password === data.confirmPassword;
     },
-    { message: "As senhas não coincidem.", path: ["confirmPassword"] }
+    { message: "Passwords do not match.", path: ["confirmPassword"] }
   );
 
 interface UserSettingsFormProps {
@@ -116,8 +122,8 @@ const UserSettingsForm = ({ userMetadata }: UserSettingsFormProps) => {
 
     if (error) {
       toast.error(
-        `Erro ao fazer upload do avatar: ${
-          error instanceof Error ? error.message : "Erro desconhecido"
+        `Error uploading avatar: ${
+          error instanceof Error ? error.message : "Unknown error"
         }`
       );
       return null;
@@ -139,12 +145,12 @@ const UserSettingsForm = ({ userMetadata }: UserSettingsFormProps) => {
     let finalAvatarUrl = data.my_profile_image_url;
     try {
       if (selectedAvatarFile) {
-        toast.info("Fazendo upload do avatar...");
+        toast.info("Uploading avatar...");
         const uploadedUrl = await performUpload(selectedAvatarFile);
         if (uploadedUrl) {
           finalAvatarUrl = uploadedUrl;
         } else {
-          toast.error("Falha no upload do avatar. Por favor, tente novamente.");
+          toast.error("Avatar upload failed. Please try again.");
           return;
         }
       }
@@ -168,13 +174,13 @@ const UserSettingsForm = ({ userMetadata }: UserSettingsFormProps) => {
         throw error;
       }
 
-      toast.success("Conta atualizada com sucesso!");
+      toast.success("Account updated successfully!");
       console.log("User data updated:", updateData);
     } catch (error) {
       console.error("Erro ao atualizar conta:", error);
       toast.error(
-        `Erro ao atualizar conta: ${
-          error instanceof Error ? error.message : "Erro desconhecido"
+        `Error updating account: ${
+          error instanceof Error ? error.message : "Unknown error"
         }`
       );
     } finally {
@@ -205,6 +211,10 @@ const UserSettingsForm = ({ userMetadata }: UserSettingsFormProps) => {
 
   return (
     <Card>
+      <CardHeader>
+        <CardTitle>Settings</CardTitle>
+        <CardDescription>Manage your account settings</CardDescription>
+      </CardHeader>
       <CardContent className="grid gap-6">
         <Form {...form}>
           <form
@@ -213,30 +223,64 @@ const UserSettingsForm = ({ userMetadata }: UserSettingsFormProps) => {
             })}
             className="mx-auto max-w-md space-y-8"
           >
-            {currentAvatarUrlToDisplay && (
-              <div className="mb-4 flex justify-center">
-                <Avatar className="h-24 w-24">
-                  <AvatarImage
-                    src={currentAvatarUrlToDisplay}
-                    alt={userMetadata.name || "User Avatar"}
-                  />
+            <div className="flex flex-col items-center gap-4">
+              <div className="group relative">
+                <Avatar
+                  className={`h-24 w-24 ${currentAvatarUrlToDisplay ? "" : "bg-gray-200 dark:bg-gray-700"}`}
+                >
+                  {currentAvatarUrlToDisplay ? (
+                    <AvatarImage
+                      src={currentAvatarUrlToDisplay}
+                      alt={userMetadata.name || "User Avatar"}
+                    />
+                  ) : null}
                   <AvatarFallback>
                     {userMetadata.name
                       ? userMetadata.name.substring(0, 2).toUpperCase()
                       : "TR"}
                   </AvatarFallback>
+
+                  {/* Overlay hover effect */}
+                  <div className="bg-opacity-50 absolute inset-0 flex items-center justify-center rounded-full bg-black opacity-0 transition-opacity group-hover:opacity-100">
+                    <span className="text-xs font-medium text-white">
+                      Change photo
+                    </span>
+                  </div>
                 </Avatar>
               </div>
-            )}
 
-            <FormControl>
-              <Input
-                placeholder="Upload your avatar"
-                type="file"
-                accept="image/*"
-                onChange={handleFileChange}
-              />
-            </FormControl>
+              <div className="flex flex-col items-center gap-2">
+                <FormControl>
+                  <div className="relative">
+                    <Input
+                      id="avatar-upload"
+                      className="absolute hidden"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileChange}
+                    />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      className="w-full text-sm"
+                      onClick={() =>
+                        document.getElementById("avatar-upload")?.click()
+                      }
+                    >
+                      {selectedAvatarFile ? "Change image" : "Choose image"}
+                    </Button>
+                  </div>
+                </FormControl>
+
+                {selectedAvatarFile && (
+                  <span className="text-muted-foreground mt-1 text-center text-xs">
+                    {selectedAvatarFile.name.length > 25
+                      ? `${selectedAvatarFile.name.substring(0, 22)}...`
+                      : selectedAvatarFile.name}
+                  </span>
+                )}
+              </div>
+            </div>
 
             <FormField
               control={form.control}

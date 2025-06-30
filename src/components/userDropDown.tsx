@@ -45,6 +45,7 @@ export function UserDropdownMenu() {
       avatar_url: userMetadata.avatar_url || "",
       full_name: userMetadata.full_name || "",
       name: userMetadata.name || "",
+      email: user.email || "",
       picture: userMetadata.picture || "",
       my_profile_image_url: userMetadata.my_profile_image_url || "",
     });
@@ -96,7 +97,7 @@ export function UserDropdownMenu() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-800">
-          <Avatar>
+          <Avatar className="border-2 border-gray-300 dark:border-gray-700">
             <AvatarImage
               src={
                 userData?.my_profile_image_url
@@ -114,7 +115,16 @@ export function UserDropdownMenu() {
           <MoreVerticalIcon className="ml-auto h-4 w-4" />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="start">
+      <DropdownMenuContent
+        className="mt-2 w-56 shadow-md"
+        align="end"
+        alignOffset={30}
+        side="right"
+        sideOffset={10}
+      >
+        <DropdownMenuItem asChild>
+          <div className="p-1">Perfil</div>
+        </DropdownMenuItem>
         <DropdownMenuItem onClick={handleLogout}>
           Logout
           <LogOutIcon className="ml-auto h-4 w-4" />
