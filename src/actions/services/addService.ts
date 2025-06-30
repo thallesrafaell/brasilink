@@ -23,7 +23,7 @@ const addService = async (data: AddServiceSchema) => {
       data: {
         name: data.name,
         description: data.description,
-        price: parseFloat(data.price),
+        price: Number(data.price),
         duration: Number(data.duration),
         userId: userId,
       },

@@ -7,9 +7,6 @@ import { EditServiceDialog } from "@/components/editService";
 import { Services } from "@/generated/prisma";
 import { formatCurrency, formatDate } from "@/utils/format";
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-
 export const serviceColumns: ColumnDef<Services>[] = [
   {
     accessorKey: "name",
@@ -32,7 +29,21 @@ export const serviceColumns: ColumnDef<Services>[] = [
     header: "Duration",
     cell: ({ row }) => {
       const duration = Number(row.getValue("duration"));
-      return <div>{`${duration} minutes`}</div>;
+
+      if (duration % 1 === 0) {
+        return <div>{`${duration}h`}</div>;
+      }
+
+      const hours = Math.floor(duration);
+      const minutes = Math.round((duration - hours) * 60);
+
+      if (hours > 0 && minutes > 0) {
+        return <div>{`${hours}h ${minutes}min`}</div>;
+      } else if (hours > 0) {
+        return <div>{`${hours}h`}</div>;
+      } else {
+        return <div>{`${minutes}min`}</div>;
+      }
     },
   },
   {

@@ -7,11 +7,11 @@ export const addServiceSchema = z.object({
   description: z.string().min(10, {
     message: "Description must be at least 10 characters.",
   }),
-  price: z.string().refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
+  price: z.number().min(0.01, {
     message: "Price must be a valid positive number.",
   }),
-  duration: z.string().refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
-    message: "Duration must be a valid positive number.",
+  duration: z.number().min(0.5, {
+    message: "Duration must be at least 0.5 hours (30 minutes).",
   }),
 });
 

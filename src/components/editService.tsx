@@ -32,6 +32,7 @@ import {
   FormLabel,
   FormMessage,
 } from "./ui/form";
+import { CurrencyInput, DurationInput } from "./ui/formatted-inputs";
 import { Textarea } from "./ui/textarea";
 
 export function EditServiceDialog(data: EditServiceSchema) {
@@ -128,15 +129,10 @@ export function EditServiceDialog(data: EditServiceSchema) {
                   <FormItem>
                     <FormLabel>Price</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="0.00"
-                        type="number"
-                        step="0.01"
-                        {...field}
-                        value={field.value?.toString() || ""}
-                        onChange={(e) =>
-                          field.onChange(parseFloat(e.target.value) || 0)
-                        }
+                      <CurrencyInput
+                        value={field.value}
+                        onChange={field.onChange}
+                        placeholder="$ 0,00"
                       />
                     </FormControl>
                     <FormDescription>
@@ -153,19 +149,16 @@ export function EditServiceDialog(data: EditServiceSchema) {
                   <FormItem>
                     <FormLabel>Duration</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="Enter duration in minutes"
-                        type="number"
-                        step="1"
-                        {...field}
-                        value={field.value?.toString() || ""}
-                        onChange={(e) =>
-                          field.onChange(parseInt(e.target.value) || 0)
-                        }
+                      <DurationInput
+                        value={field.value}
+                        onChange={field.onChange}
+                        placeholder="0"
+                        unit="hours"
                       />
                     </FormControl>
                     <FormDescription>
-                      The duration of your service in minutes.
+                      The duration of your service in hours (e.g., 1.5 for 1
+                      hour and 30 minutes).
                     </FormDescription>
                     <FormMessage />
                   </FormItem>

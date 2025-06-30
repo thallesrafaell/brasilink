@@ -1,6 +1,6 @@
 {
   "name": "brasilink",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -36,6 +36,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.58.1",
+    "react-number-format": "^5.4.4",
     "sonner": "^2.0.5",
     "tailwind-merge": "^3.3.1",
     "uuid": "^11.1.0",

@@ -29,6 +29,7 @@ import {
   FormLabel,
   FormMessage,
 } from "./ui/form";
+import { CurrencyInput, DurationInput } from "./ui/formatted-inputs";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 
@@ -42,8 +43,8 @@ export function AddServiceSheet() {
     defaultValues: {
       name: "",
       description: "",
-      price: "",
-      duration: "",
+      price: 0,
+      duration: 0,
     },
   });
 
@@ -121,11 +122,10 @@ export function AddServiceSheet() {
                 <FormItem>
                   <FormLabel>Price</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="0.00"
-                      type="number"
-                      step="0.01"
-                      {...field}
+                    <CurrencyInput
+                      value={field.value}
+                      onChange={field.onChange}
+                      placeholder="$ 0,00"
                     />
                   </FormControl>
                   <FormDescription>
@@ -142,13 +142,16 @@ export function AddServiceSheet() {
                 <FormItem>
                   <FormLabel>Duration</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="Enter duration (e.g. 1 hour)"
-                      {...field}
+                    <DurationInput
+                      value={field.value}
+                      onChange={field.onChange}
+                      placeholder="0"
+                      unit="hours"
                     />
                   </FormControl>
                   <FormDescription>
-                    The duration of your service.
+                    The duration of your service in hours (e.g., 1.5 for 1 hour
+                    and 30 minutes).
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

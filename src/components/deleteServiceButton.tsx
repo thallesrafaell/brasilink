@@ -35,7 +35,7 @@ export function DeleteServiceButton(data: DeleteServiceSchema) {
         <Button
           variant="ghost"
           size="icon"
-          className="gap-2 text-red-500 hover:bg-red-800"
+          className="gap-2 text-red-500 hover:text-red-800"
         >
           <Trash className="h-4 w-4" />
         </Button>
