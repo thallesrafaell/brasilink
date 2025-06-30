@@ -16,6 +16,7 @@ const SettingsPage = async () => {
     name: String(metaData?.name ?? ""),
     picture: String(metaData?.picture ?? ""),
     provider: String(appMetadata?.provider ?? ""),
+    my_profile_image_url: String(metaData?.my_profile_image_url ?? ""),
   };
 
   return (

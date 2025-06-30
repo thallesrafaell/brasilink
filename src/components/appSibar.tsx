@@ -13,7 +13,8 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-import LogoutButton from "./logoutButton";
+import { ModeToggle } from "./toogleTheme";
+import { UserDropdownMenu } from "./userDropDown";
 
 // Menu items.
 const items = [
@@ -53,10 +54,11 @@ export function AppSidebar() {
 
   return (
     <Sidebar>
-      <SidebarHeader>
+      <SidebarHeader className="mb-8 flex flex-row justify-between">
         <h1 className="text-primary text-2xl font-bold">
           Brasilink<span className="text-muted-foreground text-sm">&copy;</span>
         </h1>
+        <ModeToggle />
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup className="p-0">
@@ -83,7 +85,7 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
         <div className="mt-auto w-full">
-          <LogoutButton />
+          <UserDropdownMenu />
         </div>
       </SidebarContent>
     </Sidebar>
