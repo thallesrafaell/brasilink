@@ -16,3 +16,9 @@ export const addServiceSchema = z.object({
 });
 
 export type AddServiceSchema = z.infer<typeof addServiceSchema>;
+
+export const deleteServiceSchema = z.object({
+  id: z.string().uuid("Invalid service ID format."),
+});
+
+export type DeleteServiceSchema = z.infer<typeof deleteServiceSchema>;
