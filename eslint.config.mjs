@@ -27,8 +27,8 @@ const eslintConfig = [
       "out/",
       ".turbo/",
       "node_modules/",
-      "src/components/ui/", // <--- IGNORE OS COMPONENTES DO SHADCN UI AQUI
-      // Você pode ser mais específico se necessário, ex: "src/components/ui/sonner.tsx"
+      "src/components/ui/",
+      "src/generated/prisma/**",
     ],
   },
   {
