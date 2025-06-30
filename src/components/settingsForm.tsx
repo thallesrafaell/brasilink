@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -14,24 +18,37 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import UserSettingsForm from "./userSettinsForm";
 
 interface SettingsFormProps {
-  userMetadata: {
-    avatar_url: string;
-    email: string;
-    full_name: string;
-    name: string;
-    picture: string;
-    provider: string;
+  userMetadata?: {
+    avatar_url?: string;
+    email?: string;
+    full_name?: string;
+    name?: string;
+    picture?: string;
+    provider?: string;
   };
 }
 
 const SettingsForm = ({ userMetadata }: SettingsFormProps) => {
+  const [userData, setUserData] = useState<typeof userMetadata | null>(null);
+
+  const [activeTab, setActiveTab] = useState("account");
+
+  useEffect(() => {
+    setUserData(userMetadata || null);
+  }, [userMetadata]);
+
+  if (!userData) {
+    return <div>Loading user data...</div>;
+  }
+
   return (
     <div className="flex w-full max-w-sm flex-col gap-6">
-      <Tabs defaultValue="account">
+      <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList>
           <TabsTrigger value="account">Account</TabsTrigger>
           <TabsTrigger value="password">Password</TabsTrigger>
         </TabsList>
+
         <TabsContent value="account">
           <Card>
             <CardHeader>
@@ -41,9 +58,10 @@ const SettingsForm = ({ userMetadata }: SettingsFormProps) => {
                 done.
               </CardDescription>
             </CardHeader>
-            <UserSettingsForm userMetadata={userMetadata} />
+            <UserSettingsForm userMetadata={userData} />
           </Card>
         </TabsContent>
+
         <TabsContent value="password">
           <Card>
             <CardHeader>

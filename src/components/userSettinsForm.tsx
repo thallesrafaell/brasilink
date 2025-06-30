@@ -1,8 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { v4 as uuid } from "uuid";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -38,12 +40,11 @@ const formSchema = z
       .refine((val) => val === undefined || val === "" || val.length >= 6, {
         message: "Confirmação de senha deve ter pelo menos 6 caracteres.",
       }),
+    avatar_url: z.string().optional(),
   })
   .refine(
     (data) => {
-      // Se senha e confirmação vazias, ok
       if (!data.password && !data.confirmPassword) return true;
-      // Senhas precisam ser iguais
       return data.password === data.confirmPassword;
     },
     { message: "As senhas não coincidem.", path: ["confirmPassword"] }
@@ -64,12 +65,26 @@ const UserSettingsForm = ({ userMetadata }: UserSettingsFormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: userMetadata.name || "",
-      email: userMetadata.email || "",
+      name: "",
+      email: "",
       password: "",
       confirmPassword: "",
+      avatar_url: userMetadata.avatar_url || "",
     },
   });
+
+  // Atualiza os valores do form quando userMetadata estiver disponível
+  useEffect(() => {
+    if (userMetadata) {
+      form.reset({
+        name: userMetadata.name || "",
+        email: userMetadata.email || "",
+        password: "",
+        confirmPassword: "",
+        avatar_url: userMetadata.avatar_url || "",
+      });
+    }
+  }, [userMetadata, form]);
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     console.log("Form data submitted:", data);
@@ -103,14 +118,43 @@ const UserSettingsForm = ({ userMetadata }: UserSettingsFormProps) => {
         }`
       );
     } finally {
-      // Reset the form after submission
       form.reset({
         name: data.name,
         email: data.email,
         password: "",
         confirmPassword: "",
+        avatar_url: data.avatar_url || "",
       });
     }
+  };
+
+  const uploadAvatar = async (file: File) => {
+    const supabase = createClient();
+
+    const fileName = `${uuid()}-${file.name}`;
+
+    const { data, error } = await supabase.storage
+      .from("brasilink")
+      .upload(`avatars/${fileName}`, file);
+
+    if (error) {
+      toast.error(
+        `Erro ao fazer upload do avatar: ${
+          error instanceof Error ? error.message : "Erro desconhecido"
+        }`
+      );
+      return;
+    }
+
+    const avatarPath = data?.path;
+
+    if (avatarPath) {
+      const avatarUrl = supabase.storage
+        .from("brasilink")
+        .getPublicUrl(avatarPath).data.publicUrl;
+      form.setValue("avatar_url", avatarUrl);
+    }
+    toast.success("Avatar atualizado com sucesso!");
   };
 
   const isGoogleUser = userMetadata.provider === "google";
@@ -124,6 +168,22 @@ const UserSettingsForm = ({ userMetadata }: UserSettingsFormProps) => {
           })}
           className="space-y-8"
         >
+          <FormControl>
+            <Input
+              placeholder="Upload your avatar"
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                const avatarFile = e.target.files?.[0];
+                if (avatarFile) {
+                  uploadAvatar(avatarFile);
+                  // Limpa o input para permitir upload do mesmo arquivo se quiser
+                  e.target.value = "";
+                }
+              }}
+            />
+          </FormControl>
+
           <FormField
             control={form.control}
             name="name"
@@ -137,6 +197,7 @@ const UserSettingsForm = ({ userMetadata }: UserSettingsFormProps) => {
               </FormItem>
             )}
           />
+
           {!isGoogleUser ? (
             <>
               <FormField
@@ -156,6 +217,7 @@ const UserSettingsForm = ({ userMetadata }: UserSettingsFormProps) => {
                   </FormItem>
                 )}
               />
+
               <FormField
                 control={form.control}
                 name="password"
@@ -174,6 +236,7 @@ const UserSettingsForm = ({ userMetadata }: UserSettingsFormProps) => {
                   </FormItem>
                 )}
               />
+
               <FormField
                 control={form.control}
                 name="confirmPassword"
