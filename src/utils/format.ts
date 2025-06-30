@@ -13,4 +13,11 @@ const formatDate = (date: Date | string) => {
   }).format(new Date(date));
 };
 
-export { formatCurrency, formatDate };
+const truncateText = (text: string, maxLength: number = 50) => {
+  if (text.length <= maxLength) {
+    return text;
+  }
+  return `${text.substring(0, maxLength)}...`;
+};
+
+export { formatCurrency, formatDate, truncateText };

@@ -4,8 +4,14 @@ import type { ColumnDef } from "@tanstack/react-table";
 
 import { DeleteServiceButton } from "@/components/deleteServiceButton";
 import { EditServiceDialog } from "@/components/editService";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Services } from "@/generated/prisma";
-import { formatCurrency, formatDate } from "@/utils/format";
+import { formatCurrency, formatDate, truncateText } from "@/utils/format";
 
 export const serviceColumns: ColumnDef<Services>[] = [
   {
@@ -15,6 +21,27 @@ export const serviceColumns: ColumnDef<Services>[] = [
   {
     accessorKey: "description",
     header: "Description",
+    cell: ({ row }) => {
+      const description = row.getValue("description") as string;
+      const truncated = truncateText(description, 50);
+
+      if (description.length <= 50) {
+        return <div>{description}</div>;
+      }
+
+      return (
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="cursor-help">{truncated}</div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p className="max-w-xs">{description}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      );
+    },
   },
   {
     accessorKey: "price",
