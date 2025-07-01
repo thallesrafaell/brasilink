@@ -155,4 +155,43 @@
   [data-slot="scroll-area-thumb"]:hover {
     background-color: hsl(var(--muted-foreground));
   }
+
+  /* Aspect ratio utilities for responsive images */
+  [data-aspect-ratio="16/9"] {
+    aspect-ratio: 16/9;
+  }
+
+  [data-aspect-ratio="4/3"] {
+    aspect-ratio: 4/3;
+  }
+
+  [data-aspect-ratio="1/1"] {
+    aspect-ratio: 1/1;
+  }
+
+  [data-aspect-ratio="3/2"] {
+    aspect-ratio: 3/2;
+  }
+
+  /* SEO optimizations */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Preload critical resources */
+  .preload-critical {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 200px;
+  }
+
+  /* Lazy loading enhancements */
+  img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  img[loading="lazy"].loaded {
+    opacity: 1;
+  }
 }
