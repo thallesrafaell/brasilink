@@ -16,7 +16,6 @@ datasource db {
 
 
 model Services {
-
   id          String   @id @default(uuid())
   name        String
   description String
@@ -26,5 +25,30 @@ model Services {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
+  userPage    UserPage? @relation(fields: [userId], references: [userId])
+
   @@map("services")
+}
+
+model UserPage {
+  id           String   @id @default(uuid())
+  userId       String   @unique 
+  name         String   
+  subtitle     String 
+  description  String   @db.Text
+  location     String 
+  phone        String 
+  email        String 
+  heroImage    String?  
+  features     String[] 
+  rating       Float    @default(0.0)
+  totalReviews Int      @default(0)
+  isActive     Boolean  @default(true)
+  slug         String?  @unique 
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  services     Services[]
+
+  @@map("user_pages")
 }
