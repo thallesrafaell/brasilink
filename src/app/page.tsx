@@ -1,10 +1,9 @@
-import { Button } from "@/components/ui/button";
+import { LandingPageServer } from "@/components/LandingPageServer";
+
+import { generateMetadata } from "./metadata";
+
+export { generateMetadata };
 
 export default function Home() {
-  return (
-    <>
-      <h1 className="text-3xl font-bold">Hello World</h1>
-      <Button>Click me</Button>
-    </>
-  );
+  return <LandingPageServer />;
 }
