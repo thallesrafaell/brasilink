@@ -5,7 +5,6 @@ import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/HeroSection";
 import { ServicesSection } from "@/components/ServicesSection";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
 
 interface UserPageProps {
   params: Promise<{
@@ -113,8 +112,6 @@ const UserPage = async ({ params }: UserPageProps) => {
             email={clientData.email}
             features={clientData.features}
           />
-
-          <Separator className="my-8" />
 
           <ServicesSection
             services={clientData.services}

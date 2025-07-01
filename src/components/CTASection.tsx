@@ -31,9 +31,8 @@ export const CTASection = ({ phone, email }: CTASectionProps) => {
           </Button>
           <Button
             asChild
-            variant="outline"
             size="lg"
-            className="border-2 border-white font-semibold text-white transition-colors hover:bg-white hover:text-blue-600"
+            className="bg-white font-semibold text-blue-600 transition-colors hover:bg-blue-50"
           >
             <a
               href={`mailto:${email}`}
