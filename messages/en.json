@@ -1,0 +1,142 @@
+{
+  "navigation": {
+    "resources": "Features",
+    "pricing": "Pricing",
+    "testimonials": "Testimonials",
+    "login": "Sign In",
+    "getStarted": "Get Started",
+    "menu": "Menu"
+  },
+  "hero": {
+    "badge": "Made by Brazilians, for Brazilians worldwide",
+    "title": "Manage your",
+    "titleHighlight": " appointments ",
+    "titleEnd": "like a professional",
+    "subtitle": "The complete platform for Brazilian professionals abroad to manage services, appointments and payments simply and professionally.",
+    "getStartedButton": "Get Started",
+    "demoButton": "View Demo",
+    "freeTrial": "Free 14-day trial",
+    "noCredit": "No credit card required",
+    "cancelAnytime": "Cancel anytime"
+  },
+  "problemSolution": {
+    "problemTitle": "Tired of losing clients due to disorganization?",
+    "problem1": "WhatsApp appointments that get lost among other conversations",
+    "problem2": "Schedule conflicts that generate last-minute cancellations",
+    "problem3": "Difficulty receiving payments professionally",
+    "solutionTitle": "Brasilink solves this for you",
+    "solution1": "Personalized professional page for your services",
+    "solution2": "Automatic appointment system with availability control",
+    "solution3": "Integration with international payment gateways"
+  },
+  "features": {
+    "title": "Everything you need in one platform",
+    "subtitle": "Features designed specifically for Brazilian professionals serving abroad",
+    "smartBooking": {
+      "title": "Smart Booking",
+      "description": "Automated system that manages your availability and prevents schedule conflicts"
+    },
+    "professionalPage": {
+      "title": "Professional Page",
+      "description": "Your own personalized page with unique domain to share with clients"
+    },
+    "onlinePayments": {
+      "title": "Online Payments",
+      "description": "Receive payments securely with integration to major gateways"
+    },
+    "responsive": {
+      "title": "100% Responsive",
+      "description": "Perfect on any device - mobile, tablet or desktop"
+    },
+    "reports": {
+      "title": "Reports & Analytics",
+      "description": "Track your performance with detailed reports on appointments and revenue"
+    },
+    "security": {
+      "title": "Total Security",
+      "description": "Data protected with encryption and automatic cloud backup"
+    }
+  },
+  "testimonials": {
+    "title": "What our professionals say",
+    "subtitle": "Real stories from those who transformed their business with Brasilink",
+    "maria": {
+      "name": "Maria Silva",
+      "role": "Aesthetician - London",
+      "quote": "I used to lose at least 3 clients per week due to miscommunications. Now my appointments are automatic and my schedule is always organized!"
+    },
+    "joao": {
+      "name": "João Santos",
+      "role": "Personal Trainer - Toronto",
+      "quote": "My revenue increased 40% since I started using Brasilink. The professional page gives much more confidence to my clients."
+    },
+    "ana": {
+      "name": "Ana Costa",
+      "role": "Therapist - Lisbon",
+      "quote": "Finally I can focus on what I love doing. Brasilink takes care of all the bureaucratic part of appointments for me."
+    }
+  },
+  "pricing": {
+    "title": "Plans that fit your budget",
+    "subtitle": "Start free and scale as your business grows",
+    "starter": {
+      "title": "Starter",
+      "price": "Free",
+      "description": "To get started",
+      "feature1": "Up to 20 appointments/month",
+      "feature2": "Personalized page",
+      "feature3": "Email support",
+      "button": "Start Free"
+    },
+    "professional": {
+      "title": "Professional",
+      "price": "€29",
+      "period": "/month",
+      "description": "For professionals",
+      "popular": "Most Popular",
+      "feature1": "Unlimited appointments",
+      "feature2": "Online payments",
+      "feature3": "Advanced reports",
+      "feature4": "Priority support",
+      "button": "Try 14 days free"
+    },
+    "business": {
+      "title": "Business",
+      "price": "€79",
+      "period": "/month",
+      "description": "For teams",
+      "feature1": "Everything in Professional",
+      "feature2": "Multiple professionals",
+      "feature3": "Custom API",
+      "feature4": "Phone support",
+      "button": "Contact Sales"
+    }
+  },
+  "cta": {
+    "title": "Ready to professionalize your business?",
+    "subtitle": "Join hundreds of Brazilian professionals who have already transformed their way of working with Brasilink.",
+    "button1": "Start Now - It's Free",
+    "button2": "Talk to Specialist",
+    "guarantee": "🔒 Free 14-day trial • No commitment • Cancel anytime"
+  },
+  "footer": {
+    "description": "The appointment platform made by Brazilians, for Brazilians worldwide.",
+    "product": "Product",
+    "resources": "Features",
+    "pricing": "Pricing",
+    "documentation": "Documentation",
+    "api": "API",
+    "support": "Support",
+    "helpCenter": "Help Center",
+    "contact": "Contact",
+    "status": "Status",
+    "community": "Community",
+    "legal": "Legal",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "cookies": "Cookies",
+    "lgpd": "GDPR",
+    "copyright": "© 2025 Brasilink. All rights reserved.",
+    "madeWith": "Developed with 💙 for Brazilians worldwide."
+  }
+}

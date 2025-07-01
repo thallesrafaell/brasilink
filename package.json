@@ -1,6 +1,6 @@
 {
   "name": "brasilink",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -39,6 +39,7 @@
     "husky": "^9.1.7",
     "lucide-react": "^0.525.0",
     "next": "15.3.4",
+    "next-intl": "^4.3.1",
     "next-themes": "^0.4.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

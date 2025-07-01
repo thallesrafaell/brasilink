@@ -1,0 +1,142 @@
+{
+  "navigation": {
+    "resources": "Recursos",
+    "pricing": "Preços",
+    "testimonials": "Depoimentos",
+    "login": "Entrar",
+    "getStarted": "Começar Grátis",
+    "menu": "Menu"
+  },
+  "hero": {
+    "badge": "Feito por brasileiros, para brasileiros no mundo",
+    "title": "Gerencie seus",
+    "titleHighlight": " agendamentos ",
+    "titleEnd": "como um profissional",
+    "subtitle": "A plataforma completa para profissionais brasileiros no exterior gerenciarem serviços, agendamentos e pagamentos de forma simples e profissional.",
+    "getStartedButton": "Começar Grátis",
+    "demoButton": "Ver Demonstração",
+    "freeTrial": "Teste grátis por 14 dias",
+    "noCredit": "Sem cartão de crédito",
+    "cancelAnytime": "Cancele a qualquer momento"
+  },
+  "problemSolution": {
+    "problemTitle": "Cansado de perder clientes por desorganização?",
+    "problem1": "Agendamentos via WhatsApp que se perdem no meio de outras conversas",
+    "problem2": "Conflitos de horário que geram cancelamentos de última hora",
+    "problem3": "Dificuldade para receber pagamentos de forma profissional",
+    "solutionTitle": "O Brasilink resolve isso para você",
+    "solution1": "Página profissional personalizada para seus serviços",
+    "solution2": "Sistema de agendamento automático com controle de disponibilidade",
+    "solution3": "Integração com gateways de pagamento internacionais"
+  },
+  "features": {
+    "title": "Tudo que você precisa em uma plataforma",
+    "subtitle": "Recursos pensados especificamente para profissionais brasileiros que atendem no exterior",
+    "smartBooking": {
+      "title": "Agendamento Inteligente",
+      "description": "Sistema automatizado que gerencia sua disponibilidade e evita conflitos de horário"
+    },
+    "professionalPage": {
+      "title": "Página Profissional",
+      "description": "Sua própria página personalizada com domínio único para compartilhar com clientes"
+    },
+    "onlinePayments": {
+      "title": "Pagamentos Online",
+      "description": "Receba pagamentos de forma segura com integração aos principais gateways"
+    },
+    "responsive": {
+      "title": "100% Responsivo",
+      "description": "Perfeito em qualquer dispositivo - celular, tablet ou desktop"
+    },
+    "reports": {
+      "title": "Relatórios e Métricas",
+      "description": "Acompanhe seu desempenho com relatórios detalhados de agendamentos e receita"
+    },
+    "security": {
+      "title": "Segurança Total",
+      "description": "Dados protegidos com criptografia e backup automático na nuvem"
+    }
+  },
+  "testimonials": {
+    "title": "O que nossos profissionais dizem",
+    "subtitle": "Histórias reais de quem transformou seu negócio com o Brasilink",
+    "maria": {
+      "name": "Maria Silva",
+      "role": "Esteticista - Londres",
+      "quote": "Antes eu perdia pelo menos 3 clientes por semana por causa de desencontros. Agora meus agendamentos são automáticos e minha agenda sempre organizada!"
+    },
+    "joao": {
+      "name": "João Santos",
+      "role": "Personal Trainer - Toronto",
+      "quote": "Minha receita aumentou 40% desde que comecei a usar o Brasilink. A página profissional passa muito mais confiança aos meus clientes."
+    },
+    "ana": {
+      "name": "Ana Costa",
+      "role": "Terapeuta - Lisboa",
+      "quote": "Finalmente posso focar no que amo fazer. O Brasilink cuida de toda parte burocrática dos agendamentos para mim."
+    }
+  },
+  "pricing": {
+    "title": "Planos que cabem no seu bolso",
+    "subtitle": "Comece grátis e escale conforme seu negócio cresce",
+    "starter": {
+      "title": "Starter",
+      "price": "Grátis",
+      "description": "Para começar",
+      "feature1": "Até 20 agendamentos/mês",
+      "feature2": "Página personalizada",
+      "feature3": "Suporte por email",
+      "button": "Começar Grátis"
+    },
+    "professional": {
+      "title": "Professional",
+      "price": "€29",
+      "period": "/mês",
+      "description": "Para profissionais",
+      "popular": "Mais Popular",
+      "feature1": "Agendamentos ilimitados",
+      "feature2": "Pagamentos online",
+      "feature3": "Relatórios avançados",
+      "feature4": "Suporte prioritário",
+      "button": "Teste 14 dias grátis"
+    },
+    "business": {
+      "title": "Business",
+      "price": "€79",
+      "period": "/mês",
+      "description": "Para equipes",
+      "feature1": "Tudo do Professional",
+      "feature2": "Múltiplos profissionais",
+      "feature3": "API personalizada",
+      "feature4": "Suporte telefônico",
+      "button": "Falar com Vendas"
+    }
+  },
+  "cta": {
+    "title": "Pronto para profissionalizar seu negócio?",
+    "subtitle": "Junte-se a centenas de profissionais brasileiros que já transformaram sua forma de trabalhar com o Brasilink.",
+    "button1": "Começar Agora - É Grátis",
+    "button2": "Falar com Especialista",
+    "guarantee": "🔒 Teste grátis por 14 dias • Sem compromisso • Cancele quando quiser"
+  },
+  "footer": {
+    "description": "A plataforma de agendamento feita por brasileiros, para brasileiros no mundo.",
+    "product": "Produto",
+    "resources": "Recursos",
+    "pricing": "Preços",
+    "documentation": "Documentação",
+    "api": "API",
+    "support": "Suporte",
+    "helpCenter": "Central de Ajuda",
+    "contact": "Contato",
+    "status": "Status",
+    "community": "Comunidade",
+    "legal": "Legal",
+    "privacy": "Privacidade",
+    "terms": "Termos",
+    "cookies": "Cookies",
+    "lgpd": "LGPD",
+    "copyright": "© 2025 Brasilink. Todos os direitos reservados.",
+    "madeWith": "Desenvolvido com 💙 para brasileiros no mundo todo."
+  }
+}
