@@ -1,6 +1,6 @@
 {
   "name": "brasilink",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -34,6 +34,7 @@
     "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "embla-carousel-react": "^8.6.0",
     "git-commit-msg-linter": "^5.0.8",
     "husky": "^9.1.7",
     "lucide-react": "^0.525.0",
